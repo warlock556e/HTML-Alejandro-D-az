@@ -11,13 +11,13 @@ $rutnum="";
 $edad="";
 $direccion="";
 $fechadn="";
-$id=""
+$id="";
 
 
 
 //ingresar datos
 
-myslqi_querry($conexion, "INSERT INTO usuarios (username,userlastname,pass,rut,age,adress,birthdate, registerdate) VALUES ( '$nombre','$apelllidos','$nutnum','$edad','$direccion','&fechadn', 'now()')");
+myslqi_querry($conexion, "INSERT INTO usuarios (rut,username,userlastname,pass,age,adress,birthdate, registerdate) VALUES ( '$nutnum','$nombre','$apelllidos','$edad','$direccion','&fechadn', 'now()')");
 
 myslqi_close($conexion);
 // mostrar datos

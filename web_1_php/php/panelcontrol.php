@@ -9,14 +9,7 @@ $query=myslqi_querry($connexion,$sql);
 $row=mysqli_fetch_array($query);
 
 
-   $sqledad="SELECT DATEDIFF(YEAR,FechaNac,GETDATE())
--(CASE
-   WHEN DATEADD(YY,DATEDIFF(YEAR,usuarios.FechaNac,GETDATE()),clientesFechaNac)>GETDATE() THEN 
-      1
-   ELSE 
-      0 
-   END) as Edad
- from usuario";
+ 
 
 ?>
 
@@ -42,22 +35,60 @@ $row=mysqli_fetch_array($query);
     <form action="insertar.php" method="POST">
 
     <label for=""></label>
-<input type="text" class="form-control mb-3" name="Nombre" placeholder="">
+<input type="text" class="form-control mb-3" name="Nombre" placeholder="Nombre">
     <label for=""></label>
-<input type="text" class="form-control mb-3" name="Apellidos" placeholder="">
+<input type="text" class="form-control mb-3" name="Apellidos" placeholder="Apellidos">
     <label for=""></label>
-<input type="text" class="form-control mb-3" name="Rut" placeholder="">
+<input type="text" class="form-control mb-3" name="Rut" placeholder="Rut">
     <label for=""></label>
-<input type="text" class="form-control mb-3" name="Direccion" placeholder="">
+<input type="text" class="form-control mb-3" name="Direccion" placeholder="Direccion">
     <label for="Sexo"></label>
-<input type="text" class="form-control mb-3" name="Sexo" placeholder="">
+<input type="text" class="form-control mb-3" name="Sexo" placeholder="Sexo">
     <label for=""></label>
-<input type="text" class="form-control mb-3" name="Fecha de Nacimiento" placeholder="">
+<input type="text" class="form-control mb-3" name="Fecha de Nacimiento" placeholder="Fecha de Nacimiento">
+
+
 
 
 
     </form>
 </div>
+
+                       <div class="col-md-8">
+                            <table class="table" >
+                                <thead class="table-success table-striped" >
+                                    <tr>
+                                        <th>Rut</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Direccion</th>
+                                        <th>Sexo</th>
+                                        <th>Fecha de nacimiento</th>
+                                        <th>Edad</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                        <?php
+                                            while($row=mysqli_fetch_array($query)){
+                                        ?>
+                                            <tr>
+                                                <th><?php  echo $row['Rut']?></th>
+                                                <th><?php  echo $row['Nombre']?></th>
+                                                <th><?php  echo $row['Apellidos']?></th>
+                                                <th><?php  echo $row['Direccion']?></th>
+                                                <th><?php  echo $row['Sexo']?></th>
+                                                <th><?php  echo $row['Fecha_de_naciemento']?></th>
+                                                <th><?php  echo $row['Edad']?></th>
+                                                <th><a href="actualizar.php?id=<?php echo $row['Rut'] ?>" class="btn btn-info">Editar</a></th>
+                                                <th><a href="delete.php?id=<?php echo $row['Rut'] ?>" class="btn btn-danger">Eliminar</a></th>                                        
+                                            </tr>
+                                        <?php 
+                                            }
+                                        ?>
+                                </tbody>
+                            </table>
+                        </div>
 
     </div>
 
