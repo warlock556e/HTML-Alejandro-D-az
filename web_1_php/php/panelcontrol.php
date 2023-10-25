@@ -4,7 +4,7 @@ include("conexion.php");
 $connexion=conectar();
 
 $sql="SELECT * FROM usuarios";
-$query=myslqi_querry($connexion,$sql);
+$query=mysqli_query($connexion,$sql);
 
 $row=mysqli_fetch_array($query);
 
@@ -34,20 +34,34 @@ $row=mysqli_fetch_array($query);
     <h1>Ingrese datos</h1>
     <form action="insertar.php" method="POST">
 
-    <label for=""></label>
+    
 <input type="text" class="form-control mb-3" name="Nombre" placeholder="Nombre">
-    <label for=""></label>
+    
 <input type="text" class="form-control mb-3" name="Apellidos" placeholder="Apellidos">
-    <label for=""></label>
+    
 <input type="text" class="form-control mb-3" name="Rut" placeholder="Rut">
-    <label for=""></label>
+    
 <input type="text" class="form-control mb-3" name="Direccion" placeholder="Direccion">
-    <label for="Sexo"></label>
-<input type="text" class="form-control mb-3" name="Sexo" placeholder="Sexo">
-    <label for=""></label>
-<input type="text" class="form-control mb-3" name="Fecha de Nacimiento" placeholder="Fecha de Nacimiento">
+    
+<select class="form-select mb-3" id="Sexo" >
+
+      <option selected hidden> Sexo</option>
+
+      <option value="Masculino">Masculino</option>
+
+      <option value="Femenino">Femenino</option>
+
+      <option value="Otro">Otro</option>
 
 
+
+
+</select>
+
+    <label for="Fecha de Nacimiento"> Fecha de Nacimiento</label>
+<input type="date" class="form-control mb-3" name="Fecha_Nacimiento" placeholder="Fecha de Nacimiento">
+
+<input type="submit" class="btn btn-primary">
 
 
 
@@ -65,6 +79,8 @@ $row=mysqli_fetch_array($query);
                                         <th>Sexo</th>
                                         <th>Fecha de nacimiento</th>
                                         <th>Edad</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
 
@@ -78,7 +94,7 @@ $row=mysqli_fetch_array($query);
                                                 <th><?php  echo $row['Apellidos']?></th>
                                                 <th><?php  echo $row['Direccion']?></th>
                                                 <th><?php  echo $row['Sexo']?></th>
-                                                <th><?php  echo $row['Fecha_de_naciemento']?></th>
+                                                <th><?php  echo $row['Fecha_naciemento']?></th>
                                                 <th><?php  echo $row['Edad']?></th>
                                                 <th><a href="actualizar.php?id=<?php echo $row['Rut'] ?>" class="btn btn-info">Editar</a></th>
                                                 <th><a href="delete.php?id=<?php echo $row['Rut'] ?>" class="btn btn-danger">Eliminar</a></th>                                        
@@ -88,6 +104,7 @@ $row=mysqli_fetch_array($query);
                                         ?>
                                 </tbody>
                             </table>
+                            
                         </div>
 
     </div>

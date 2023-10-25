@@ -13,7 +13,7 @@ if($connexion->connect_errno){
     die("conexion falida" . $connexion->connect_errno);
 }
 
-mysquli_select_db($connexion,$db);
+mysqli_select_db($connexion,$db);
 return $connexion;
 
 }

@@ -1,11 +1,11 @@
 <?php 
     include("conexion.php");
-    $con=conectar();
+    $connexion=conectar();
 
-$id=$_GET['id'];
+$Rut=$_GET['Rut'];
 
-$sql="SELECT * FROM alumno WHERE cod_estudiante='$id'";
-$query=mysqli_query($con,$sql);
+$sql="SELECT * FROM usuarios WHERE Rut='$Rut'";
+$query=mysqli_query($connexion,$sql);
 
 $row=mysqli_fetch_array($query);
 ?>
@@ -23,9 +23,9 @@ $row=mysqli_fetch_array($query);
     </head>
     <body>
                 <div class="container mt-5">
-                    <form action="update.php" method="POST">
+                    <form action="factualizar.php" method="POST">
                     
-                                <input type="hidden" name="Rut" value="<?php echo $row['Rut']  ?>">
+    <input type="hidden" name="Rut" value="<?php echo $row['Rut']?>">
 
     <label for=""></label>
 <input type="text" class="form-control mb-3" name="Nombre" placeholder="Nombre" value="<?php echo $row['Nombre']  ?>">
@@ -33,10 +33,21 @@ $row=mysqli_fetch_array($query);
 <input type="text" class="form-control mb-3" name="Apellidos" placeholder="Apellidos" value="<?php echo $row['Apellidos']  ?>">
     <label for=""></label>
 <input type="text" class="form-control mb-3" name="Direccion" placeholder="Direccion" value="<?php echo $row['Direccion']  ?>">
-    <label for="Sexo"></label>
-<input type="text" class="form-control mb-3" name="Sexo" placeholder="Sexo" value="<?php echo $row['Sexo']  ?>">
-    <label for=""></label>
-<input type="text" class="form-control mb-3" name="Fecha de Nacimiento" placeholder="Fecha de Nacimiento" value="<?php echo $row['Fecha_Nacimiento']  ?>">
+
+<select class="form-select mb-3" id="Sexo" >
+
+      <option value="<?php echo $row['Sexo']  ?>" selected hidden> <?php echo $row['Sexo']  ?></option>
+
+      <option value="Masculino">Masculino</option>
+
+      <option value="Femenino">Femenino</option>
+
+      <option value="Otro">Otro</option>
+
+      </select>
+
+
+<input type="date" class="form-control mb-3" name="Fecha de Nacimiento" placeholder="Fecha de Nacimiento" value="<?php echo $row['Fecha_Nacimiento']  ?>">
 
                                 
                             <input type="submit" class="btn btn-primary btn-block" value="Actualizar">
@@ -45,5 +56,3 @@ $row=mysqli_fetch_array($query);
                 </div>
     </body>
 </html>
-
-?>

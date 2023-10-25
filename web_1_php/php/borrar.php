@@ -1,14 +1,14 @@
 <?php
 
 include("conexion.php");
-$con=conectar();
+$connexion=conectar();
 
-$cod_estudiante=$_GET['id'];
+$Rut=$_GET['Rut'];
 
-$sql="DELETE FROM alumno  WHERE cod_estudiante='$cod_estudiante'";
-$query=mysqli_query($con,$sql);
+$sql="DELETE FROM usuarios  WHERE Rut='$Rut'";
+$query=mysqli_query($connexion,$sql);
 
     if($query){
-        Header("Location: alumno.php");
+        Header("Location: panelcontrol.php");
     }
 ?>
