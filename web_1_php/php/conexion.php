@@ -5,7 +5,7 @@ function conectar(){
 $server = "localhost";
 $user = "root";
 $passw= "sonsofeter";
-$db= "HDMWebdb";
+$db= "hdmwebdb";
 
 $connexion = new mysqli($server,$user,$passw,$db);
 
